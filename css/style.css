@@ -1,0 +1,42 @@
+@import url('http://fonts.googleapis.com/css?family=Oswald:400,700|Open+Sans:200,400,600,800');
+
+html,body {
+ margin:0; 
+ padding:0; 
+ height:100%;
+ width:100%;
+ }
+
+#map { 
+  position:absolute;
+  top:0; 
+  bottom:0; 
+  width:100%; 
+}
+
+/*.container-fluid{
+  margin-left: 10px;
+  margin-right:10px;
+} */
+
+.margin0{
+  margin-left: 0;
+}
+
+#footer{
+  bottom:0;
+  left:0;
+  opacity: 0.85;
+  height:150px;
+}
+
+#logodesc{
+  top:50px;
+}
+
+/*https://github.com/novus/nvd3/issues/365*/
+/*.leaflet-overlay-pane svg {
+    width: auto;
+    height: auto;
+}
+*/
