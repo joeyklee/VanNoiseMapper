@@ -29,8 +29,8 @@ $(document).ready(function(){
 
     L.control.layers(baseMaps,null, {position:'topright'}).addTo(map); //bottomright
 
-    var income = L.featureGroup([]).bringToFront();
-    var housing = L.featureGroup([]).bringToFront();
+    var income = L.featureGroup([])
+    var housing = L.featureGroup([])
     var transit = L.featureGroup([]).bringToFront();
 
     // ---------------- Census data------------------ //
@@ -95,6 +95,25 @@ $(document).ready(function(){
             style: houseStyle
         }).addTo(housing);
     }); // D3 End
+    
+    d3.json("data/busroutes.geojson", function(data) {
+        // -------------- Set Scales -------------- //
+        var svgstyle = function style(feature) {
+                return {
+                    // fillColor: '#000', //feature.properties.MedHHI
+                    weight: 3,
+                    opacity: 0.5,
+                    color: '#66CCFF', //#fff
+                    // dashArray: '3',
+                    // fillOpacity: 0.75
+                };
+            }
+        
+        var busroutes = L.geoJson(data, {
+            style: svgstyle
+        }).addTo(transit);
+    }); // D3 End
+    
 
     // layer adder
     $('#button-income').click(function() {
@@ -122,6 +141,20 @@ $(document).ready(function(){
             $('#button-housing span').css('color', '#fff');
         }
     });
+
+     $('#button-transit').click(function() {
+        if(map.hasLayer(transit)){
+            map.removeLayer(transit);
+            $('#button-transit').css('background-color', '');
+            $('#button-transit span').css('color', '');
+        }
+        else{
+            transit.addTo(map);
+            $('#button-transit').css('background-color', '#66CCFF');
+            $('#button-transit span').css('color', '#fff');
+        }
+    });
+
 
 
 
