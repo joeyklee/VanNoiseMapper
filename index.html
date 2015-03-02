@@ -22,12 +22,36 @@
         <!-- Map -->
         <div id='map'></div>
 
-        <div class="col12 pin-bottomleft margin0 fill-grey pad1" id="footer">
+        <div class="col12 pin-bottomleft margin0 fill-grey pad2" id="footer">
             <h1> Vancouver Noise Mapper</h1>
-            <div class="col10 pin-bottomleft margin0 fill-grey pad1" id="logodesc">
-                <p> Map of noise data measured in the City of Vancouver, BC, Canda, by students in Geog311:Urban Environments at the University of British Columbia, Department of Geography.</p>
+            <div class="col10 pin-bottomleft margin0 pad2" id="logodesc">
+                <p> Map of noise data measured in the City of Vancouver, BC crowdsourced by students in Geog 311: Urban Environments at the University of British Columbia, Department of Geography. <br><span id="credits"> Map/Visualization: Joey Lee</span></p>
             </div>
         </div>
+
+        <div class="col2 pin-topleft margin0 pad1" id ="layerbox">
+            <div class="col12 margin0 pad1 round fill-grey mainlayeritem" id="button-noise">
+                <img src="img/noun_4298.png" align="left">
+                <h3> <span> Noise </span></h3>
+            </div>
+
+            <div class="col12 margin0 pad1 round fill-grey contextlayeritem" id="button-income">
+                <img src="img/noun_9686.png" align="left">
+                <h3> <span> Income </span></h3>
+            </div>
+            <div class="col12 margin0 pad1 round fill-grey contextlayeritem" id="button-housing">
+                <img src="img/noun_3966.png" align="left" >
+                <h3> <span> Housing Prices </span></h3>
+            </div>
+            <div class="col12 margin0 pad1 round fill-grey contextlayeritem" id="button-transit">
+                <img src="img/noun_4174.png" align="left" >
+                <h3> <span> Transit </span></h3>
+            </div>            
+
+        </div>
+
+
+
 
         <!-- mapbox -->
         <script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.4/mapbox.js'></script>

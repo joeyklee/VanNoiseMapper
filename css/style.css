@@ -14,11 +14,6 @@ html,body {
   width:100%; 
 }
 
-/*.container-fluid{
-  margin-left: 10px;
-  margin-right:10px;
-} */
-
 .margin0{
   margin-left: 0;
 }
@@ -26,13 +21,106 @@ html,body {
 #footer{
   bottom:0;
   left:0;
-  opacity: 0.85;
+  /*opacity: 0.85;*/
+  background-color: rgba(250, 250, 250, 0.9);
   height:150px;
+  z-index:100;
 }
 
 #logodesc{
   top:50px;
 }
+
+#credits{
+  padding-top: 2rem;
+  font-size: 0.65rem;
+}
+
+#layerbox{
+  top:100px;
+}
+
+.mainlayeritem{
+  /*padding: 20px;*/
+  margin-bottom:15px;
+  outline-color: #000;
+  background-color: rgba(250, 250, 250, 0.9);  
+}
+.mainlayeritem span{
+  display:inline-block;
+  vertical-align: middle;
+}
+.mainlayeritem img{
+  vertical-align: middle;
+  display:inline-block;
+  padding-right: 10px;
+  width: 30px;
+}
+#button-noise:hover{
+  background-color: #FFA375;
+  color:#fff;
+}
+.contextlayeritem{
+  /*padding: 20px;*/
+  margin-top:5px;
+  outline-color: #000;
+  background-color: rgba(250, 250, 250, 0.9);
+  text-align: left;
+  display:inline-block;
+  vertical-align: middle;
+}
+.contextlayeritem span{
+  display:inline-block;
+  vertical-align: middle;
+}
+.contextlayeritem img{
+  vertical-align: middle;
+  padding-right: 10px;
+  width: 30px;
+  display:inline-block;
+
+}
+/*.contextlayeritem:hover{
+  background-color: #9494FF;
+  color:#fff;
+}*/
+#button-income:hover{
+  background-color: #8AE6B8;
+  color:#fff;
+}
+#button-housing:hover{
+  background-color: #9494FF;
+  color:#fff;
+}
+#button-transit:hover{
+  background-color: #66CCFF;
+  color:#fff;
+}
+
+
+
+
+.leaflet-control-zoom-in{
+  position: absolute;
+  display: block;
+  background-color: #fff;
+  /*background-repeat: no-repeat;*/
+  /*overflow: hidden;*/
+  top: 10px;
+  left:32px;
+  z-index: 100;
+}
+.leaflet-control-zoom-out{
+  position: absolute;
+  display: block;
+  background-color: #fff;
+  /*background-repeat: no-repeat;*/
+  /*overflow: hidden;*/
+  top: 10px;
+  left:5px;
+  z-index: 100;
+}
+
 
 /*https://github.com/novus/nvd3/issues/365*/
 /*.leaflet-overlay-pane svg {
