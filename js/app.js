@@ -100,20 +100,26 @@ $(document).ready(function(){
     $('#button-income').click(function() {
         if(map.hasLayer(income)){
             map.removeLayer(income);
+            $('#button-income').css('background-color', '');
+            $('#button-income span').css('color', '');
         }
         else{
             income.addTo(map);
-            // map.setView([49.2503, -123.062], 10);
+            $('#button-income').css('background-color', '#8AE6B8');
+            $('#button-income span').css('color', '#fff');
         }
     });
 
     $('#button-housing').click(function() {
         if(map.hasLayer(housing)){
             map.removeLayer(housing);
+            $('#button-housing').css('background-color', '');
+            $('#button-housing span').css('color', '');
         }
         else{
             housing.addTo(map);
-            // map.setView([49.2503, -123.062], 10);
+            $('#button-housing').css('background-color', '#9494FF');
+            $('#button-housing span').css('color', '#fff');
         }
     });
 
