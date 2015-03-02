@@ -104,21 +104,22 @@ html,body {
   position: absolute;
   display: block;
   background-color: #fff;
-  /*background-repeat: no-repeat;*/
-  /*overflow: hidden;*/
+  background-repeat: no-repeat;
+  overflow: hidden;
   top: 10px;
   left:32px;
   z-index: 100;
+  -webkit-border-radius: 0px 3px 3px 0px;
 }
 .leaflet-control-zoom-out{
   position: absolute;
   display: block;
   background-color: #fff;
-  /*background-repeat: no-repeat;*/
-  /*overflow: hidden;*/
+  background-repeat: no-repeat;
   top: 10px;
   left:5px;
   z-index: 100;
+  -webkit-border-radius: 3px 0px 0px 3px;
 }
 
 

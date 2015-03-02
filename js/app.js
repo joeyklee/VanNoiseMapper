@@ -29,49 +29,94 @@ $(document).ready(function(){
 
     L.control.layers(baseMaps,null, {position:'topright'}).addTo(map); //bottomright
 
-    // ---------------- industrial hydro ------------------ //
+    var income = L.featureGroup([]).bringToFront();
+    var housing = L.featureGroup([]).bringToFront();
+    var transit = L.featureGroup([]).bringToFront();
+
+    // ---------------- Census data------------------ //
+    function getminmax(datafeatures, val){
+            var dataMin = d3.min(datafeatures, function(d){
+                if (d.properties[val] >0){
+                    return d.properties[val] }});
+            var dataMax = d3.max(datafeatures, function(d){
+                return d.properties[val]});
+
+            return [dataMin, dataMax];
+    }
+
+   
     // --- Industrial Layer --- //
-    d3.json("data/industrial.geojson", function(data) {
+    d3.json("data/census2011_vancity.geojson", function(data) {
+        // -------------- Set Scales -------------- //
+        console.log(data);
+
+
         // -------------- Set Scales -------------- //
         // get max and min
-        var dataMax = d3.max(data.features, function(d){
-            return d.properties.PotentE});
-        var dataMin = d3.min(data.features, function(d){
-            return d.properties.PotentE});
-        // Set the Color - Not necessary for this case
-        var color = d3.scale.linear()
-                      .domain([dataMin, dataMax])
-                      .range(["#6631E8","#6631E8"]);
-        // Set the Scale - Log Scale for emphasis
-        var scale = d3.scale.log()
-                      .domain([dataMin,dataMax])
-                      .range([1, 15])
-        // Style the Industrial Points Using helpful D3 tools 
-        var industrialStyle = function (feature, latlng) {
-            return L.circleMarker(latlng, {
-                radius: scale(feature.properties.PotentE),
-                fillColor: color(feature.properties.PotentE),
-                color: "#000",
-                weight: 1,
-                opacity: 0,
-                fillOpacity: 0.6
-            });
-        } 
-        // Set the PopUp Content
-        function onEachFeature(feature, layer) {
-            // does this feature have a property named popupContent?
-            var popupContent = "<p><center>Industry:"+ "<br/>" 
-                                + feature.properties.CATEGORY+ "</center></p>";
-            layer.bindPopup(popupContent);
-            console.log(layer);
-        }
+        hhiMin = getminmax(data.features,'MedHHI')[0]
+        hhiMax = getminmax(data.features,'MedHHI')[1]
+        var hhicolor = d3.scale.log()
+                      .domain([hhiMin, hhiMax])
+                      .range(["#E0FFF0","#1F3329"]);
 
+        houseMin = getminmax(data.features,'MedHVal')[0]
+        houseMax = getminmax(data.features,'MedHVal')[1]
+        var housecolor = d3.scale.log()
+                      .domain([houseMin, houseMax])
+                      .range(["#F0E0FF","#523D66"]);                  
+
+
+        var hhistyle = function style(feature) {
+                return {
+                    fillColor: hhicolor(feature.properties.MedHHI), //feature.properties.MedHHI
+                    weight: 0.25,
+                    opacity: 0.75,
+                    color: '#fff', //#fff
+                    // dashArray: '3',
+                    fillOpacity: 0.75
+                };
+            }
+        var houseStyle = function style(feature) {
+                return {
+                    fillColor: housecolor(feature.properties.MedHVal), //feature.properties.MedHHI
+                    weight: 0.25,
+                    opacity: 0.75,
+                    color: '#fff', //#fff
+                    // dashArray: '3',
+                    fillOpacity: 0.75
+                };
+            }
         // Load Geojson Points using Native Leaflet
-        var industralPoints = L.geoJson(data, {
-            onEachFeature: onEachFeature,
-            pointToLayer: industrialStyle
-        }).addTo(industrial);
+        var census_income = L.geoJson(data, {
+            style: hhistyle
+        }).addTo(income);
+
+        var census_housing = L.geoJson(data, {
+            style: houseStyle
+        }).addTo(housing);
     }); // D3 End
+
+    // layer adder
+    $('#button-income').click(function() {
+        if(map.hasLayer(income)){
+            map.removeLayer(income);
+        }
+        else{
+            income.addTo(map);
+            // map.setView([49.2503, -123.062], 10);
+        }
+    });
+
+    $('#button-housing').click(function() {
+        if(map.hasLayer(housing)){
+            map.removeLayer(housing);
+        }
+        else{
+            housing.addTo(map);
+            // map.setView([49.2503, -123.062], 10);
+        }
+    });
+
 
 
 }); // docready end
