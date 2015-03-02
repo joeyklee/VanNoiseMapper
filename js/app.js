@@ -32,6 +32,7 @@ $(document).ready(function(){
     var income = L.featureGroup([])
     var housing = L.featureGroup([])
     var transit = L.featureGroup([]).bringToFront();
+    var population  = L.tileLayer('https://tileserver-geog.rhcloud.com/population/{z}/{x}/{y}.png',{zIndex:4});
 
     // ---------------- Census data------------------ //
     function getminmax(datafeatures, val){
@@ -114,6 +115,7 @@ $(document).ready(function(){
         }).addTo(transit);
     }); // D3 End
     
+     
 
     // layer adder
     $('#button-income').click(function() {
@@ -142,7 +144,7 @@ $(document).ready(function(){
         }
     });
 
-     $('#button-transit').click(function() {
+    $('#button-transit').click(function() {
         if(map.hasLayer(transit)){
             map.removeLayer(transit);
             $('#button-transit').css('background-color', '');
@@ -155,6 +157,18 @@ $(document).ready(function(){
         }
     });
 
+    $('#button-popd').click(function() {
+         if(map.hasLayer(population)){
+             map.removeLayer(population);
+             $('#button-popd').css('background-color', '');
+             $('#button-popd span').css('color', '');
+         }
+         else{
+             population.addTo(map);
+             $('#button-popd').css('background-color', '#00E6B8');
+             $('#button-popd span').css('color', '#fff');
+         }
+     });
 
 
 

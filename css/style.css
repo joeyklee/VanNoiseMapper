@@ -92,10 +92,15 @@ html,body {
   background-color: #9494FF;
   color:#fff;
 }
+#button-popd:hover{
+  background-color: #00E6B8;
+  color:#fff;
+}
 #button-transit:hover{
   background-color: #66CCFF;
   color:#fff;
 }
+
 
 
 
